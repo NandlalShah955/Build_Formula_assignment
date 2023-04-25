@@ -10,7 +10,7 @@ function Navbar() {
   };
     return (
   <Nav>
-      <Logo href="#">Logo</Logo>
+      <Logo href="#">Taskroo</Logo>
       <Hamburger onClick={toggleNav}>
         <span />
         <span />
