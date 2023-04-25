@@ -10,7 +10,7 @@ function Footer() {
 }
 const Wrapper = styled.footer`
   display: flex;
-  margin-top: 580px;
+  
   justify-content: center;
   align-items: center;
   height: 60px;
