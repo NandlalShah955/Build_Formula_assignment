@@ -71,10 +71,10 @@ const InputTask = styled.input`
 `;
 
 const Btn = styled.button`
-  padding: 8px;
   border-radius: 4px;
-  border: none;
+  padding: 8px;
   color: #fff;
+  border: none;
   background-color: green;
 
   cursor: pointer;
@@ -94,7 +94,9 @@ function Task() {
   const [nayaTask, setNayaTask] = useState("");
   const [editingTask, setEditingTask] = useState(null);
 
-  const handleChange = (e) => setNayaTask(e.target.value);
+  const handleChange = (e) => {
+    setNayaTask(e.target.value)
+  };
 
   const handleAddTask = () => {
     if (nayaTask !== "") {
@@ -106,7 +108,7 @@ function Task() {
     } else {
       Swal.fire({
         icon: "warning",
-        title: "Please add a task in the input!",
+        title: "Please add a New task in the input!",
       });
     }
   };
@@ -130,18 +132,18 @@ function Task() {
       }
     });
   };
+  const handleEditTodochange = (e) => {
+    setEditingTask((todo) => ({ ...todo, text: e.target.value }));
+  };
 
   const handleEditTask = (todo) => {
     setEditingTask(todo);
   };
 
-  const handleEditTodochange = (e) => {
-    setEditingTask((todo) => ({ ...todo, text: e.target.value }));
-  };
 
   const handleSubmit = () => {
     setTask((task) =>
-      task.map((todo) => (todo.id === editingTask.id ? editingTask : todo))
+      task.map((el) => (el.id === editingTask.id ? editingTask : el))
     );
     setEditingTask(null);
     Swal.fire({
