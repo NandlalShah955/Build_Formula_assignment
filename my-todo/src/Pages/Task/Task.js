@@ -38,14 +38,6 @@ const TodoItems = styled.li`
     font-size: 16px;
   }
 `;
-
-const ALLTodo = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-
 const TodoInputDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,6 +48,15 @@ const TodoInputDiv = styled.div`
     align-items: center;
   }
 `;
+
+const ALLTodo = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+
+
 
 const InputTask = styled.input`
   flex: 1;
