@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const MainDiv = styled.div`
   height: 100vh;
   width: 100%;
+  
 `;
 const Title = styled.h1`
   margin-bottom: 1.5rem;
@@ -18,12 +19,15 @@ const TaskWrapper = styled.div`
   padding: 20px;
   border-radius: 8px;
   position: relative;
-  top: 7rem;
+  top: 10rem;
   
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
   @media screen and (min-width: 768px) {
     width: 70%;
+  margin-top: 100px;
+  
+  
   }
 `;
 
@@ -34,6 +38,7 @@ const TodoItems = styled.li`
   gap: 20px;
   margin-bottom: 1rem;
   align-items: center;
+
   @media screen and (max-width: 480px) {
     font-size: 16px;
   }
@@ -41,11 +46,12 @@ const TodoItems = styled.li`
 const TodoInputDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.3rem;
 
   @media screen and (min-width: 480px) {
     flex-direction: row;
     align-items: center;
+    
   }
 `;
 
@@ -119,12 +125,12 @@ function Task() {
       title: "Are you sure?",
       text: "You won't be able to regress it!",
       showCancelButton: true,
+      cancelButtonText: "Cancel",
       confirmButtonColor: "#f44336",
       confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        setTask((task) => task.filter((todo) => todo.id !== id));
+        setTask((task) => task.filter((el) => el.id !== id));
         Swal.fire({
           icon: "success",
           title: "Deleted!",
@@ -134,11 +140,11 @@ function Task() {
     });
   };
   const handleEditTodochange = (e) => {
-    setEditingTask((todo) => ({ ...todo, text: e.target.value }));
+    setEditingTask((el) => ({ ...el, text: e.target.value }));
   };
 
-  const handleEditTask = (todo) => {
-    setEditingTask(todo);
+  const handleEditTask = (el) => {
+    setEditingTask(el);
   };
 
 

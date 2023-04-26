@@ -2,28 +2,28 @@ import React,{useState,useEffect} from 'react'
 import styled from "styled-components";
 import Swal from "sweetalert2";
  
- const Container = styled.div`
-  border-radius: 5px;
+ const MainDiv = styled.div`
+  height: 100vh;
+  border-radius: 9px;
+  font-family:"Helvetica" ,sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
   width: 100%;
 `;
 
- const Title = styled.h1`
-  color: #333;
-  font-size: 36px;
-  margin-bottom: 50px;
+ const Heading = styled.h1`
   position: relative;
+  font-size: 36px;
   bottom: 10rem;
+  margin-bottom: 50px;
+  color: #333;
 `;
 
  const ClearButton = styled.button`
-  background-color: #0069d9;
+  background-color: red;
   position: relative;
   bottom: 10rem;
   color: #fff;
@@ -33,58 +33,28 @@ import Swal from "sweetalert2";
   font-size: 18px;
   cursor: pointer;
   &:hover {
-    background-color: #f44336;
+    background-color: purple;
   }
 `;
-
-const buttonStyles = {
-  confirmButton: {
-    backgroundColor: "#28a745",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    padding: "10px 50px",
-    fontSize: "18px",
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: "#0069d9",
-    },
-  },
-  cancelButton: {
-    backgroundColor: "#dc3545",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    padding: "10px 50px",
-    fontSize: "18px",
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: "#0069d9",
-    },
-  },
-};
-
-
-
-
 
 function Home() {
   const [Latestcustomer, setLatestcustomer] = useState("");
   
 useEffect(() => {
-  const customers=JSON.parse(localStorage.getItem("customers")||[]);
+  const customers=JSON.parse(localStorage.getItem("customers")||"[]");
   const recentCustomer=customers[customers.length-1];
 if(recentCustomer){
   setLatestcustomer(`${recentCustomer.firstName} ${recentCustomer.lastName}`);
   
 }
-
-// console.log(Latestcustomer)
+// console.log(recentCustomer)
 }, [])
 
 const handleDelete=()=>{
   const customers=JSON.parse(localStorage.getItem("customers")||"[]");
- if(customers.length>0){
+ 
+ 
+  if(customers.length>0){
    Swal.fire({
      icon: "warning",
      title: "Are you sure?",
@@ -102,7 +72,13 @@ const handleDelete=()=>{
          title: "Deleted!",
          text: "Your Contact has been deleted Successfully.",
        });
-     }
+     }else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire({
+       icon: "success",
+       title: "Don't worry! Your data is safe.",
+        
+     });
+    }
    });
  }else {
   Swal.fire({
@@ -117,10 +93,11 @@ const handleDelete=()=>{
 
   
   return (
-    <> <Container>
-    <Title>Welcome to the Taskroo{Latestcustomer && `, ${Latestcustomer}`}!</Title> 
+    <> <MainDiv>
+
+    <Heading>Welcome to the Taskroo{ Latestcustomer && `, ${Latestcustomer}`}</Heading>  
      <ClearButton onClick={handleDelete}>Clear</ClearButton>
-  </Container>
+  </MainDiv>
   </>
   )
 }
